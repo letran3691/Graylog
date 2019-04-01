@@ -38,6 +38,8 @@
    
 ### <a name="2"><a/>2 Cài đặt 
 
+- Tắt vào firewalld
+
         systemctl stop firewalld
         
         systemctl disable firewalld
