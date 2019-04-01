@@ -218,6 +218,12 @@
         systemctl enable graylog-server
 
 
+
+### Cấu hình rsyslog.
+
+   - Graylog hỗ trợ khá nhiều cách để có thể nhận được log từ client gửi lên.
+   
+
 - Truy cập 
 
     http://your_ip_server:9000
@@ -233,6 +239,52 @@
     ![image](https://user-images.githubusercontent.com/19284401/55304827-94744500-5477-11e9-97a7-269180ffbbc3.png)
     
     - Đây là nơi hiển thị toàn bộ log mà server thư thập được từ client gửi lên.
+    
+- Tab **Stream**
+        
+    ![image](https://user-images.githubusercontent.com/19284401/55315062-af55b200-5495-11e9-8972-71a5610b9910.png)
+
+    
+   - Đây là nơi các bạn phân loại logs(access, error, warning...) để dễ quản lý.
+   
+   - Tạo Stream mới, góc trên bên phải.
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55315199-06f41d80-5496-11e9-8716-c67b9f82de58.png)
+   
+   - Tạo Rules cho Stream.
+   
+   
+   - Nhìn lại tab Search 1 chút các bạn sẽ thấy nhưng thông tin này ở đó.
+      
+   ![image](https://user-images.githubusercontent.com/19284401/55315973-a534b300-5497-11e9-89c3-60c44e5b778a.png)
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55315738-25a6e400-5497-11e9-95b2-3287f0d3ff07.png)
+
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55315491-9ef20700-5496-11e9-9849-86bc3a6d2199.png)
+
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55315616-de205800-5496-11e9-9789-893dd4bd5c2f.png)
+   
+   - Tab Alert này sẽ liên quan để phần cấu hình mail, mình sẽ nói cuối cùng
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55316387-7b2fc080-5498-11e9-9b07-2be078ab899d.png)
+   
+   - Tab System -> input
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55316564-e24d7500-5498-11e9-8e51-cae1cd9ce49d.png)
+
+   - Tab này là nơi cấu hình để client gửi log lên.
+   
+   
+
+
+
+   
+   
+   
+   
+
     
     
 
