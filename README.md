@@ -26,12 +26,23 @@
    - **GrayLog Web interface**: Quản lý bằng giao diện web
    
    
-### <a name="2"><a/>2 Cài đặt   
+### <a name="2"><a/>2 Cài đặt 
+
+        systemctl stop firewalld
+        
+        systemctl disable firewalld
+        
+        sudo setenforce 0
+       
+        reboot  
    
 
 ### <a name="2.1"><a/>2.1 Cài đặt Packet.
-    
+
+        
+                   
         yum -y install epel-release
+        
         
    - Install java 
    
@@ -218,10 +229,55 @@
         systemctl enable graylog-server
 
 
+- Graylog hỗ trợ khá nhiều cách để có thể nhận được log từ client gửi lên. Tuy nhiên mình sẽ hướng dẫn mọi người các đơn giản nhất đó là dùng **rsyslog**
 
 ### Cấu hình rsyslog.
 
-   - Graylog hỗ trợ khá nhiều cách để có thể nhận được log từ client gửi lên.
+     
+   - Install rsyslog
+   
+            yum install rsyslog
+            
+   - Cấu hình.
+   
+            vi /etc/rsyslog.conf
+            
+   - Để có thể gửi log lên server bạn cần chỉnh sửa lại file 
+   
+   -  Thêm đoạn code này vào  file
+   
+            $ModLoad imfile
+            
+   -  Cú pháp gửi log lên server
+   
+            $InputFileName /var/log/httpd/xxxx_access.log
+            $InputFileTag xxxAccessLog:
+            $InputFileStateFile xxxx_acc.log.statefile
+            $InputFileFacility local3
+            $InputFileSeverity info
+            $InputRunFileMonitor
+            
+            
+   - InputFileName: Đường dẫn đến file log 
+   - InputFileTag: Thẻ tab (đặt tên gì cũng được cốt là để dễ nhớ)
+   - InputFileFacility 
+   
+   ### Tham khảo thêm <a href="https://www.rsyslog.com/doc/v5-stable/configuration/modules/imfile.html" rel="nofollow">tại đây<a/>
+   
+   ### Tham khảo về Facility và Severity level  <a href="https://en.wikipedia.org/wiki/Syslog#Facility" rel="nofollow">tại đây<a/>
+   
+- Trỏ về server log
+   
+         local3.* @10.0.1.129:9999
+        
+   - **local3** là Facility ở trên
+   
+   - @10.0.1.129: là ip của server graylog
+   
+   - 9999: là port của graylog
+   
+- Chú ý: Nếu firewalld đang mở nhớ mở port nhé
+   
    
 
 - Truy cập 
