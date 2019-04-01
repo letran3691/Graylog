@@ -262,9 +262,9 @@
    - InputFileTag: Thẻ tab (đặt tên gì cũng được cốt là để dễ nhớ)
    - InputFileFacility 
    
-   ### Tham khảo thêm <a href="https://www.rsyslog.com/doc/v5-stable/configuration/modules/imfile.html" rel="nofollow">tại đây<a/>
+   ### Tham khảo thêm về $ModLoad imfile  <a href="https://www.rsyslog.com/doc/v5-stable/configuration/modules/imfile.html" rel="nofollow">tại đây<a/>
    
-   ### Tham khảo về Facility và Severity level  <a https://success.trendmicro.com/solution/TP000086250-What-are-Syslog-Facilities-and-Levels" rel="nofollow">tại đây<a/>
+   ### Tham khảo về Facility và Severity level <a href="https://success.trendmicro.com/solution/TP000086250-What-are-Syslog-Facilities-and-Levels" rel="nofollow">tại đây<a/>
    
 - Trỏ về server log
    
