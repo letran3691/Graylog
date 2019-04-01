@@ -12,7 +12,7 @@
    - [2.5 Cầu hình web interface](#2.5)
    - [2.6 Cầu hình Rsyslog](#2.6)
    - [2.7 Web GUI](#2.7)
-   - [2.8 Alert Mail](#2.8)
+   - [2.8 Alert Mail (đang update)](#2.8)
    
 
 
