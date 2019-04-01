@@ -3,7 +3,17 @@
 ------
 #### [1 Giới thiệu](#1)
    - [1.1 Thành Phần](#1.1)
+#### [2 Cài Đặt](#2)
 
+   - [2.1 Cài đặt packet](#2.1)
+   - [2.2 Cài Elasticsrach](#2.2)
+   - [2.3 Cài đặt Mongodb](#2.3)
+   - [2.4 Cài đặt Graylog](#2.4)
+   - [2.5 Cầu hình web interface](#2.5)
+   - [2.6 Cầu hình Rsyslog](#2.6)
+   - [2.7 Web GUI](#2.7)
+   - [2.8 Alert Mail](#2.8)
+   
 
 
 -------------------
@@ -53,7 +63,7 @@
        ![image](https://user-images.githubusercontent.com/19284401/55300780-6e44aa00-5463-11e9-97bd-2f4ca91521ec.png)
        
        
-### <a name="2.2"><a/>2.2 Elasticsearch 
+### <a name="2.2"><a/>2.2 Cài đặt Elasticsearch 
 
  - Import the GPG key
  
@@ -231,7 +241,7 @@
 
 - Graylog hỗ trợ khá nhiều cách để có thể nhận được log từ client gửi lên. Tuy nhiên mình sẽ hướng dẫn mọi người các đơn giản nhất đó là dùng **rsyslog**
 
-### Cấu hình rsyslog.
+### <a name="2.6"><a/>2.6 Cấu hình rsyslog.
 
      
    - Install rsyslog
@@ -278,7 +288,9 @@
    
 - Chú ý: Nếu firewalld đang mở nhớ mở port nhé
    
-   
+ 
+ 
+#### <a name="2.7"><a/>2.7 Web GUI  
 
 - Truy cập 
 
@@ -328,9 +340,50 @@
    
    - Tab System -> input
    
-   ![image](https://user-images.githubusercontent.com/19284401/55316564-e24d7500-5498-11e9-8e51-cae1cd9ce49d.png)
+   ![image](https://user-images.githubusercontent.com/19284401/55341914-be5a5580-54d1-11e9-86d6-caf9a2fe9ecb.png)
+
 
    - Tab này là nơi cấu hình để client gửi log lên.
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55342004-f6619880-54d1-11e9-80e6-716b7d86104e.png)
+   
+   - Bạn chọn **Raw/plantext UDP** hoặc **syslog UDP** rồi **LAUNCH NEW INPUT** ngay bên cạnh 
+   
+   - Điểm khác này của 2 cái này là gì.
+    
+   - Syslog UDP: đơn giản là gửi theo cấu trúc của Rsyslog thôi.
+   
+   - Raw/plantext UDP: Cài này các bạn chú ý này. nếu **client và graylog ko cùng timelocal**, thì các bạn phải dùng option này thì mới xem được log, nếu ko chọn cái này thì graylog vẫn ghi nhận có log nhưng nó ko hiện thị ra được vì giờ giữa client và nó ko đồng bộ được.
+   
+   ##### Syslog UDP
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55342912-1a25de00-54d4-11e9-921b-dd5646f3c94d.png)
+
+   
+   - Global: nếu bạn có nhiều client gửi log lên server bằng cơ chế Rsyslog.
+   
+   - Title: Đặt tên thôi.
+   
+   - Bin Address: Các bạn để 0.0.0.0 là cho phép tất cả các client gửi log lên.
+   
+   - port: client sẽ gửi log qua port này. đã nói ở phần cấu hình **Rsyslog**
+   
+   - Store Full Message: lưu lại toàn bộ log ở dạng full message mà ko xóa.
+   
+   
+   ##### Raw/plantext UDP:
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55342975-3c1f6080-54d4-11e9-9238-87883a3c25bf.png)
+
+   - Khá giống với **Syslog UDP**
+   
+##### <a name="2.8"><a/>2.8 Cấu hình Alert mail   
+   
+
+   
+   
+   
+
    
    
 
