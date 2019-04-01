@@ -264,7 +264,7 @@
    
    ### Tham khảo thêm <a href="https://www.rsyslog.com/doc/v5-stable/configuration/modules/imfile.html" rel="nofollow">tại đây<a/>
    
-   ### Tham khảo về Facility và Severity level  <a href="https://en.wikipedia.org/wiki/Syslog#Facility" rel="nofollow">tại đây<a/>
+   ### Tham khảo về Facility và Severity level  <a https://success.trendmicro.com/solution/TP000086250-What-are-Syslog-Facilities-and-Levels" rel="nofollow">tại đây<a/>
    
 - Trỏ về server log
    
