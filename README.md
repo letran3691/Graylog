@@ -3,7 +3,7 @@
 ------
 #### [1 Giới thiệu](#1)
    - [1.1 Thành Phần](#1.1)
-#### [2 Cài Đặt](#2)
+#### [2 Cài Đặt Centos7](#2)
 
    - [2.1 Cài đặt packet](#2.1)
    - [2.2 Cài Elasticsrach](#2.2)
@@ -539,6 +539,8 @@ Như vậy mình đã hướng dẫn xong Graylog server. Chúc các bạn thàn
 2. Cài đặt Mongodb https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
 
 3. Cài đặt Elasticsearch https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-centos-7
+
+4. Cài đặt Graylog server https://www.vultr.com/docs/how-to-install-graylog-server-on-centos-7
 
 
 #### <a name="3.1"> 3.1 Liên hệ.
