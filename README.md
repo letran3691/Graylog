@@ -13,6 +13,8 @@
    - [2.6 Cầu hình Rsyslog](#2.6)
    - [2.7 Web GUI](#2.7)
    - [2.8 Alert Mail (đang update)](#2.8)
+#### [3 Tham khảo](#3)
+   - [3.1 Liên hệ](#3.1)
    
 
 
@@ -328,7 +330,28 @@
       
    ![image](https://user-images.githubusercontent.com/19284401/55315973-a534b300-5497-11e9-89c3-60c44e5b778a.png)
    
+   
+   - Phần Field và phần value sẽ là điều kiện để ghi nhận log vào stream 
+   
    ![image](https://user-images.githubusercontent.com/19284401/55315738-25a6e400-5497-11e9-95b2-3287f0d3ff07.png)
+   
+   - Như trong VD dưới đây Field mình chọn message và Value mình chọn WowzaError
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55375179-71a86600-5535-11e9-921b-ca1f46d97e36.png)
+   
+   - Tức là khi có log gửi lênh. Graylog sẽ check điều kiện để gắn message này vào stream nào
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55375329-f1363500-5535-11e9-9bf7-4508ca385bdf.png)
+   
+   - Như Các bạn thấy trong Stream này mình có 2 điều kiện
+    
+     - 1 Field facility must match regular expression local4
+     
+     - 2 Field message must match regular expression WowzaError
+     
+   -  Nếu đủ 2 điều kiện này thì sẽ cho log này vào stream.
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55375463-70c40400-5536-11e9-9c2b-31b8d5d1d1fd.png)
 
    
    ![image](https://user-images.githubusercontent.com/19284401/55315491-9ef20700-5496-11e9-9849-86bc3a6d2199.png)
@@ -379,7 +402,159 @@
 
    - Khá giống với **Syslog UDP**
    
-##### <a name="2.8"><a/>2.8 Cấu hình Alert mail   
+    
+- Nếu đơn giản chỉ là quản lý log tập trung thì có rất nhiều các tool khác, chả cần phải phục tạp thế này. Nhưng cái hay cảu Graylog là nó tích hợp sẵn mail cho người dùng, chỉ cần cấu hình là xong.   
+   
+##### <a name="2.8"><a/>2.8 Cấu hình Alert mail
+
+- Cấu hình lại file config 
+        
+              vi /etc/graylog/server/server.conf
+              
+-  Tìm đến dòng 497  **# Email transport** Đây là phần cấu hình liên quan đến gửi mail
+
+
+    # Email transport
+    498 #transport_email_enabled = false
+    499 #transport_email_hostname = mail.example.com
+    500 #transport_email_port = 587
+    501 #transport_email_use_auth = true
+    502 #transport_email_use_tls = true
+    503 #transport_email_use_ssl = true
+    504 #transport_email_auth_username = you@example.com
+    505 #transport_email_auth_password = secret
+    506 #transport_email_subject_prefix = [graylog]
+    507 #transport_email_from_email = graylog@example.com
+
+ 
+ - transport_email_enabled: cho phép gửi mail
+ 
+ - transport_email_hostname: server mail  
+  
+ - transport_email_port: port
+  
+ - transport_email_use_auth = true
+ - transport_email_use_tls = true
+ - transport_email_use_ssl = true        bật xác thực
+
+ - transport_email_auth_username: địa chỉ mail
+ 
+ - transport_email_auth_password: password mail
+ 
+ - transport_email_from_email: nhập lại địa chỉ mail.
+ 
+ - transport_email_web_interface_url: nhập ip và port của server (nếu các bạn public graylog ra ngoài thì phải có dòng này nhé).
+ 
+ 
+![image](https://user-images.githubusercontent.com/19284401/55372033-6bf95300-552a-11e9-8a81-fceeaae083ab.png)
+
+Tham khảo thêm <a href="https://community.graylog.org/t/setting-up-email-transport-config/5445" rel="nofollow"> tại đây.<a/>
+
+
+- Restart lại graylog 
+
+        systemctl daemon-reload
+        
+        systemctl restart graylog-server
+
+- Các bạn ko nên chỉnh sửa trực tiếp vào mẫu, mà nên copy ra để sửa tránh trường hợp cấu hình sai, lại ko biết sửa lại thể nào.
+
+- Chú ý: ko nếu dùng Gmail hoặc Gsuite phần cho phép tài khoản đăng nhập từ ứng dụng kém an toàn <a href="https://myaccount.google.com/lesssecureapps" rel="nofollow"> tại đây
+<a/>
+
+- Quay lại giao diện web
+
+- Alert -> Manage conditions
+
+    ![image](https://user-images.githubusercontent.com/19284401/55372795-238f6480-552d-11e9-9a0a-a216279e3612.png)
+
+   - Add New Conditions **Alert on stream** và **Condition Type** -> Add Alert Condition
+        
+    ![image](https://user-images.githubusercontent.com/19284401/55372872-60f3f200-552d-11e9-98e8-ff8137f8b4d8.png)
+    ![image](https://user-images.githubusercontent.com/19284401/55372906-8254de00-552d-11e9-980c-ac618640cab3.png)
+     
+     - Alert on stream: ở đây sẽ list ra toàn bộ các stream mà bạn đã tạo. bạn muốn nhận mail thông báo khi stream nào thì bạn chọn stream đó.
+     
+     - Condition Type: Điểu kiện để gửi mail 
+     
+     
+  - Alert -> Manage notification  -> Add new notification
+  
+   ![image](https://user-images.githubusercontent.com/19284401/55373405-31de8000-552f-11e9-8c87-8863088b1889.png)
+   ![image](https://user-images.githubusercontent.com/19284401/55373445-563a5c80-552f-11e9-9eeb-bbf5a6760986.png)
+
+  - Mục Notification -> Add Alert notification
+
+   ![image](https://user-images.githubusercontent.com/19284401/55373600-e5e00b00-552f-11e9-982b-2825d352bdcf.png)
+   
+   - notifi on stream: các bạn chọn đúng cái stream mà các bạn đã chọn ở mục  **Add Alert Condition** 
+   
+   - Notification Type: các bạn chọn kiểu Email Alert Callback để gọi đến hàm gửi mail
+   
+   
+  - sau khi **Add Alert notification** bạn sẽ có 1 popup như hình dưới
+   
+   ![image](https://user-images.githubusercontent.com/19284401/55373865-bb428200-5530-11e9-9c3b-206e561585f6.png)
+   
+   - Title: Đặt tên cho notifications
+   - Sender: Nhập địa chỉ email đã cấu hình trong file config ở trên  (transport_email_auth_username = you@example.com)
+   - Email receivers: nhập email nhập mail thông báo (nhập xong 1 email các bạn tab 1 cái để nhập emmail tiếp theo).
+   
+  ![image](https://user-images.githubusercontent.com/19284401/55374207-cfd34a00-5531-11e9-9eac-bbe631169a53.png)
+
+  Cuối cùng là **Save**
+  
+- Giờ chúng ta cùng test alert mail.
+
+![image](https://user-images.githubusercontent.com/19284401/55374771-e4b0dd00-5533-11e9-8732-dbd1c371d01a.png)
+
+  - Mình echo 1 chuỗi vào file log để server ghi nhận.
+  
+  - Kiểm tra lại trong phần Stream xem đã ghi nhận log chưa.
+  
+  ![image](https://user-images.githubusercontent.com/19284401/55374893-58eb8080-5534-11e9-861c-24220178a8e9.png)
+  
+   - Giờ ngồi đợi mail.
+   
+  ![image](https://user-images.githubusercontent.com/19284401/55375055-ddd69a00-5534-11e9-9417-45bd1837b45e.png)
+  
+  - Sau khoảng 1 phút thì đã nhận được mail của graylog rồi. Xử lý cũng khá nhanh.
+  
+Như vậy mình đã hướng dẫn xong Graylog server. Chúc các bạn thành công.
+
+#### <a name="3"><a/> 3. Tài liệu tham khảo.
+
+1. Cài đặt Graylog http://docs.graylog.org/en/3.0/pages/installation/os/centos.html
+
+2. Cài đặt Mongodb https://docs.mongodb.com/manual/tutorial/install-mongodb-on-red-hat/
+
+3. Cài đặt Elasticsearch https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-centos-7
+
+
+#### <a name="3.1"> 3.1 Liên hệ.
+
+<a href="https://www.facebook.com/trunglv.91" rel="nofollow">Facebook<a>
+
+
+  
+   
+   
+   
+
+   
+
+    
+    
+
+    
+    
+ 
+   
+    
+    
+
+            
+   
    
 
    
