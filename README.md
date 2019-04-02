@@ -415,15 +415,25 @@
 
 
     # Email transport
+    
     498 #transport_email_enabled = false
+    
     499 #transport_email_hostname = mail.example.com
+    
     500 #transport_email_port = 587
+    
     501 #transport_email_use_auth = true
+    
     502 #transport_email_use_tls = true
+    
     503 #transport_email_use_ssl = true
+    
     504 #transport_email_auth_username = you@example.com
+    
     505 #transport_email_auth_password = secret
+    
     506 #transport_email_subject_prefix = [graylog]
+    
     507 #transport_email_from_email = graylog@example.com
 
  
