@@ -414,7 +414,7 @@
 -  Tìm đến dòng 497  **# Email transport** Đây là phần cấu hình liên quan đến gửi mail
 
 
-    # Email transport
+    497 #Email transport
     
     498 #transport_email_enabled = false
     
