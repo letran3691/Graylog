@@ -291,6 +291,10 @@
    - 9999: là port của graylog
    
 - Chú ý: Nếu firewalld đang mở nhớ mở port nhé
+
+- Enable và start rsyslog
+
+             systemctl enable rsyslog && systemctl restart rsyslog
    
  
  
