@@ -200,9 +200,10 @@
             
 - Tìm đến dòng 55 Thêm bất kì những ký tự nào đó trên bàn phím vào sau dâu = cũng được (có có ký tự đặc biệt)
 
-    password_secret =fahiogbfaerogiboierahgowebgaw0eoigbwguoptgbobofrbwepiufbgierubgfwuipfbw
+    VD: password_secret =fahiogbfaerogiboierahgowebgaw0eoigbwguoptgbobofrbwepiufbgierubgfwuipfbw
     
-    ![image](https://user-images.githubusercontent.com/19284401/55302346-ec587f00-546a-11e9-8959-c8e05b442cf2.png)
+    ![image](https://user-images.githubusercontent.com/19284401/64225523-f0029d00-cf05-11e9-8a3a-39ae10d1a40d.png)
+
     
 - Nếu bạn muộn thể hiện sự chuyên nghiệp thì bạn dùng lệnh sau để gen ra 1 chuỗi ngẫu nhiên rồi pates sau dấu =
 
@@ -457,7 +458,7 @@
  
  - transport_email_from_email: nhập lại địa chỉ mail.
  
- - transport_email_web_interface_url: nhập ip và port của server (nếu các bạn public graylog ra ngoài thì phải có dòng này nhé).
+ - transport_email_web_interface_url: nhập ip (ip public) và port của server (nếu các bạn public graylog ra ngoài thì phải có dòng này nhé).
  
  
 ![image](https://user-images.githubusercontent.com/19284401/55372033-6bf95300-552a-11e9-8a81-fceeaae083ab.png)
